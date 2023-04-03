@@ -10,13 +10,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-
+use Session;
 class SettingsController extends Controller
 {
     public function headerBanner()
     {
         try {
-            return view("backend.admin.sliders.create");
+            $slider = Slider::get();
+            return view("backend.admin.sliders.list",compact('slider'));
         } catch (\Exception $e) {
             \Log::error($e);
             return redirect()->back()->with(['error' => $e->getMessage()]);
@@ -58,7 +59,6 @@ class SettingsController extends Controller
     }
 
     function slider_save(Request $request){
-//        print_r($request->all());die;
 
         if ($request->hasFile('image')) {
             $featureImage = $request->file('image');
@@ -67,20 +67,50 @@ class SettingsController extends Controller
             $featureImage->move($destinationPath, $featureImageRename );
             $uploadedFileName = $destinationPath.'/'.$featureImageRename;
 
-            $cause = Slider::create([
-                'image' => $uploadedFileName,
-                'status' => 0
-            ]);
-            return redirect(url('admin/dashboard/header-home-slider-Create'))->with(['success' => 'Cause added successfully']);
+        }
 
-        }else{
-            return redirect(url('admin/dashboard/header-home-slider-Create'))->with(['success' => 'Cause added successfully']);
+        $slider = new Slider;
+        $slider->image = $uploadedFileName;
+        $slider->heading_one = $request->heading_one;
+        $slider->heading_two = $request->heading_two;
+        $slider->link = $request->link;
+        $slider->status = '1';
+        $slider->save();
+        return redirect(url('admin/settings/header-banner'))->with(['success' => 'Cause added successfully']);
+
+    }
+
+    function deleteBannner($id){
+        $deleteBanner = Slider::where('id',$id)->delete();
+        Session::flash('deleted','Banner Slider Delete');
+        return redirect($_SERVER['HTTP_REFERER']);
+    }
+
+    function slider_edit($id){
+        $data['slider'] = Slider::find($id);
+        return view('backend.admin.sliders.edit',$data);
+    }
+    function slider_update(Request $request){
+        $slider = Slider::find($request->id);
+
+        if ($request->hasFile('image')) {
+            $featureImage = $request->file('image');
+
+            $destinationPath = 'banner';
+            $featureImageRename = rand(1,9999).rand(1,9999).'.'.$featureImage->getClientOriginalExtension();
+            $featureImage->move($destinationPath, $featureImageRename );
+            $uploadedFileName = $destinationPath.'/'.$featureImageRename;
+            $slider->image = $uploadedFileName;
 
         }
 
+        $slider->heading_one = $request->heading_one;
+        $slider->heading_two = $request->heading_two;
+        $slider->link = $request->link;
+        $slider->status = $request->status;
+        $slider->save();
 
-
-
+        return redirect(url('admin/settings/header-banner'))->with(['success' => 'Cause added successfully']);
 
     }
 }

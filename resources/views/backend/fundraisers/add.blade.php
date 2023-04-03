@@ -106,7 +106,7 @@
             <div class="row" id="dynamic_field1">
               <div class="col-sm-6">
                 <div class="form-group">
-                  <label>Feture Image/Video</label>
+                  <label>Feature Image/Video</label>
                   <input type="file" accept="image/*" name="image" class="form-control"
                     placeholder="Enter Feture Image/Video" value="">
                 </div>

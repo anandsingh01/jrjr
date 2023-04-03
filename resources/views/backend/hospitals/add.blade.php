@@ -45,6 +45,13 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
+                                    <label>Hospital Email</label>
+                                    <input type="text" name="hospital_email" class="form-control" placeholder="Enter Hospital Email" value="">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
                                     <label>Hospital Address</label>
                                     <input type="text" name="hospital_address" class="form-control" placeholder="Enter Hospital Address" value="">
                                 </div>
@@ -65,7 +72,16 @@
                                     <input type="number" name="hospital_no" class="form-control" placeholder="Enter Hospital Number" value="">
                                 </div>
                             </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input type="text" name="password" class="form-control"
+                                           placeholder="Enter Hospital Password">
+                                </div>
+                            </div>
                         </div>
+
                         <br>
 
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cause;
 use App\Models\CauseSubCategory;
 use App\Models\Events;
+use App\Models\Hospital;
 use App\Models\FundUser;
 use App\Models\Payment;
 use App\Models\Slider;
@@ -155,7 +156,7 @@ class FrontendController extends Controller
     }
     public function hospital_raisers_view()
     {
-        return view('backend.hospital_raisers.view');
+
     }
 
 
@@ -166,9 +167,12 @@ class FrontendController extends Controller
     {
         return view('backend.hospitals.add');
     }
-    public function hospitals_edit()
+
+
+    public function hospitals_edit($id)
     {
-        return view('backend.hospitals.edit');
+        $data['data'] = Hospital::find($id);
+        return view('backend.hospitals.edit',$data);
     }
     public function hospitals_manage()
     {
@@ -176,10 +180,37 @@ class FrontendController extends Controller
     }
     public function hospitals_view()
     {
-        return view('backend.hospitals.view');
+        $data['hospital'] = Hospital::get();
+        return view('backend.hospitals.view',$data);
     }
 
+    public function hospitals_save(Request $request)
+    {
+        $hospital_save = new Hospital();
+        $hospital_save->hospital_id = $request->hospital_id;
+        $hospital_save->hospital_name = $request->hospital_name;
+        $hospital_save->hospital_address = $request->hospital_address;
+        $hospital_save->hospital_landline = $request->hospital_landline;
+        $hospital_save->hospital_no = $request->hospital_no;
+        $hospital_save->password = $request->password;
 
+        $hospital_save->save();
+        return redirect(url('admin/hospitals-view'));
+    }
+
+    public function hospitals_update(Request $request)
+    {
+        $hospital_save = Hospital::find($request->id);
+        $hospital_save->hospital_id = $request->hospital_id;
+        $hospital_save->hospital_name = $request->hospital_name;
+        $hospital_save->hospital_address = $request->hospital_address;
+        $hospital_save->hospital_landline = $request->hospital_landline;
+        $hospital_save->hospital_no = $request->hospital_no;
+        $hospital_save->password = $request->password;
+
+        $hospital_save->save();
+        return redirect(url('admin/hospitals-view'));
+    }
 
 
     // hospitals
@@ -254,4 +285,6 @@ class FrontendController extends Controller
             'subcategories' => $subcategories
         ]);
     }
+
+
 }

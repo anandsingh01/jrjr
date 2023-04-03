@@ -582,7 +582,7 @@
                                     </li>
                                 </ul>
                                 <div class="tab-content" id="myTabContent">
-                                    <div class="tab-pane active" id="most-generous" role="tabpanel" aria-labelledby="most-generous">
+                                    <div class="tab-pane active fadein" id="most-generous" role="tabpanel" aria-labelledby="most-generous">
                                         <div class="container">
 {{--                                            <h2>Select Number Of Rows</h2>--}}
 {{--                                            <div class="form-group">--}}

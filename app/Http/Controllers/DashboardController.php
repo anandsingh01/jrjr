@@ -22,14 +22,14 @@ class DashboardController extends Controller
             if(Auth::user()->role == '1'){
                 return view('layouts.dashboard');
             }else{
-                
+
 //                 $userid = decrypt($id);
                 if (Auth::check()) {
                     return view('layouts.dashboard');
 //                     $data['user_data'] = User::find($userid);
 //                     $data['fundraiser'] = Cause::where('status','1')->with('causeImages', 'causeDocuments')->get();
 //                     $data['donated_amount'] = Payment::with('getCauses')->where('donar_id',$userid)->get();
-//         //            print_r($data['donated_amount']);die;
+         //            print_r($data['donated_amount']);die;
 //                     return view('backend.users.profile',$data);
 // //                    return view('frontend.fund_users.dashboard',$data);
                 }else{
@@ -53,8 +53,6 @@ class DashboardController extends Controller
 //        print_r($data['subcategories']);die;
         return view('backend.cause.edit',$data);
     }
-
-
 
     public function edit(Request $request)
     {
@@ -185,26 +183,63 @@ class DashboardController extends Controller
         return view('backend.users.details',$data);
     }
 
+
+    function profile($id){
+        $userid = decrypt($id);
+        $data['user_data'] = User::find($userid);
+        $data['fundraiser'] = Cause::where('status','1')->with('causeImages', 'causeDocuments')->get();
+        $data['donated_amount'] = Payment::with('getCauses')->where('donar_id',$userid)->get();
+//        print_r($data['donated_amount']);die;
+        return view('backend.users.profile',$data);
+    }
+
+
     function search_by(Request $request){
         if(!empty($request->filter_category)){
-                    $getCategory  = CauseCategory::whereIn('category',$request->filter_category)->get();
-        $getCategoryId = [];
-        foreach ($getCategory as $catIdList){
-            array_push($getCategoryId,$catIdList->id);
-        }
+            $getCategory  = CauseCategory::whereIn('category',$request->filter_category)->get();
+            $getCategoryId = [];
+            foreach ($getCategory as $catIdList){
+                array_push($getCategoryId,$catIdList->id);
+            }
 
-        $causesCategory = CauseCategory::all();
+            $causesCategory = CauseCategory::all();
 
-        $causes = Cause::with('causeImages','causeDocuments','causePatient','causeCategory','causeSubCategory')
-            ->where('category_id',$getCategoryId)
-            ->where('status',1)
-            ->get();
+            $causes = Cause::with('causeImages','causeDocuments','causePatient','causeCategory','causeSubCategory')
+                ->where('category_id',$getCategoryId)
+                ->where('status',1)
+                ->get();
 
-        return view('frontend.cause.causes', compact('causes','causesCategory'));
+            return view('frontend.cause.causes', compact('causes','causesCategory'));
         }else{
             return redirect(url('cause/causes'));
         }
 
     }
 
+    function search_by_city(Request $request){
+//        print_r($request->all());
+//        die;
+
+        if(!empty($request->filter_city)){
+//            $getCategory  = CauseCategory::whereIn('category',$request->filter_category)->get();
+            $getCategory  = CausePatient::whereIn('city',$request->filter_city)->get();
+            $getCategoryId = [];
+            foreach ($getCategory as $catIdList){
+                array_push($getCategoryId,$catIdList->cause_id);
+            }
+
+            $causesCategory = CauseCategory::all();
+
+            $causes = Cause::with('causeImages','causeDocuments','causePatient','causeCategory','causeSubCategory')
+                ->where('id',$getCategoryId)
+                ->where('status',1)
+                ->get();
+//            print_r($causes);
+//            die;
+
+            return view('frontend.cause.causes', compact('causes','causesCategory'));
+        }else{
+            return redirect(url('cause/causes'));
+        }
+    }
 }

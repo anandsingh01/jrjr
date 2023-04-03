@@ -58,7 +58,9 @@ class FundUsersController extends Controller
     public function verify(Request $request)
     {
 
-//        print_r($request->all());die;
+        $getOtpForm = implode('',$request->otp);
+
+//        print_r($getOtpForm);die;
         $c = Session::get('funduser');
 //        print_r($c);die;
 
@@ -70,7 +72,7 @@ class FundUsersController extends Controller
 
         curl_setopt_array($curl, array(
 
-            CURLOPT_URL => "https://2factor.in/API/V1/b3014f3e-2e06-11ea-9fa5-0200cd936042/SMS/VERIFY/$c/$otp",
+            CURLOPT_URL => "https://2factor.in/API/V1/b3014f3e-2e06-11ea-9fa5-0200cd936042/SMS/VERIFY/$c/$getOtpForm",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -107,11 +109,6 @@ class FundUsersController extends Controller
                 ->where('status', '1')
                 ->first();
 
-//            print_r($fund_user);die;
-
-
-//            Auth::loginUsingId($fund_user->id);
-//             dd($fund_user);
             if (is_null($fund_user)) {
 //                echo "is null";
 //                die;
@@ -135,6 +132,7 @@ class FundUsersController extends Controller
     }
     public function store(Request $request)
     {
+//        print_r($request->all());die;
         try {
             if(Session::has('otp_number')){
                 $number =  Session::get('otp_number');
@@ -151,6 +149,12 @@ class FundUsersController extends Controller
             $fandUser->fName = $request->fname;
             $fandUser->lName = $request->lname;
             $fandUser->email = $request->email;
+            $fandUser->blood_group = $request->blood_group;
+            $fandUser->dob = $request->dob;
+            $fandUser->address_1 = $request->address_1;
+            $fandUser->address_2 = $request->address_2;
+            $fandUser->city = $request->city;
+            $fandUser->zipcode = $request->zipcode;
             $fandUser->number = $number;
             $fandUser->role = '2';
             $fandUser->status = 1;

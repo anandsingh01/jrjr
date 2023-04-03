@@ -23,7 +23,7 @@ class AdminCausesController extends Controller
     public function show($id){
         try {
             $cause = Cause::with('causeCategory','causeSubCategory','causePatient','causeImages', 'causeDocuments')->find($id);
-//            print_r($cause);die;
+            // print_r($cause);die;
             return view('backend.admin.causes.details', compact('cause'));
         } catch (Exception $e) {
             Log::error($e);

@@ -15,22 +15,26 @@
             <div class="card-body">
                 <!--begin::Calendar-->
                 <div id="">
-                    <form action="{{-- {{url('updatehospital')}} --}}" method="post">
-                    {{-- @csrf --}}
-                        <input type="hidden" name="id" value="{{-- {{$data->id}} --}}">
+                    <form action="{{url('admin/update-hospital')}} " method="post">
+                     @csrf
+                        <input type="hidden" name="id" value=" {{$data->id}} ">
 
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Hospital ID </label>
-                                    <input type="number" name="hospital_id" class="form-control" placeholder="Enter Hospital ID" value="{{--{{$data->hospital_id}} --}}">
+                                    <input type="number" name="hospital_id"
+                                           class="form-control" placeholder="Enter Hospital ID"
+                                           value="{{$data->hospital_id}}">
                                 </div>
                             </div>
 
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Hospital Name</label>
-                                    <input type="text" name="hospital_name" class="form-control" placeholder="Enter Hospital Name" value="{{--{{$data->hospital_name}} --}}">
+                                    <input type="text" name="hospital_name" class="form-control"
+                                           placeholder="Enter Hospital Name"
+                                           value="{{$data->hospital_name}}">
                                 </div>
                             </div>
                         </div>
@@ -39,14 +43,17 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Hospital Address</label>
-                                    <input type="text" name="hospital_address" class="form-control" placeholder="Enter Hospital Address" value="{{--{{$data->hospital_address}} --}}">
+                                    <input type="text" name="hospital_address" class="form-control"
+                                           placeholder="Enter Hospital Address" value="{{$data->hospital_address}} ">
                                 </div>
                             </div>
 
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Hospital Landline</label>
-                                    <input type="text" name="hospital_landline" placeholder="Enter Hospital Landline" class="form-control" value="{{--{{$data->hospital_landline}} --}}">
+                                    <input type="text" name="hospital_landline"
+                                           placeholder="Enter Hospital Landline" class="form-control"
+                                           value="{{$data->hospital_landline}} ">
                                 </div>
                             </div>
                         </div>
@@ -54,17 +61,29 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
+
                                     <label>Hospital Number</label>
-                                    <input type="number" name="hospital_no" class="form-control" placeholder="Enter Hospital Number" value="{{--{{$data->hospital_no}} --}}">
+                                    <input type="number" name="hospital_no" class="form-control"
+                                           placeholder="Enter Hospital Number" value="{{(int)$data->hospital_no}}">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input type="text" name="password" class="form-control"
+                                           placeholder="Enter Hospital Password" value="{{$data->password}} ">
                                 </div>
                             </div>
                         </div>
-                        <br>
 
 
-                        <div class="d-flex justify-content-center">
-                            <button type="submit" class="btn btn-sm btn-primary" data-kt-menu-dismiss="true">Save</button>
+
+                        <div class="row">
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" class="btn btn-sm btn-primary" data-kt-menu-dismiss="true">Update</button>
+                            </div>
                         </div>
+
                     </form>
                 </div>
             </div>

@@ -19,8 +19,8 @@
                 <!--begin::Actions-->
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
                     <!--begin::Primary button-->
-                    <a href="{{ url('admin-cause-category-create') }}" class="btn btn-sm fw-bold btn-primary">
-                        Add Category
+                    <a href="{{ url('admin/settings/slider_create') }}" class="btn btn-sm fw-bold btn-primary">
+                        Add Sliders
                     </a>
                     <!--end::Primary button-->
                 </div>
@@ -38,6 +38,7 @@
                     <!--begin::Table row-->
                     <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                         <th class="min-w-125px">Sliders</th>
+                        <th class="">Status</th>
                         <th class="">Actions</th>
                     </tr>
                     <!--end::Table row-->
@@ -47,12 +48,19 @@
                 <tbody class="fw-bold text-gray-600">
                     @forelse ($slider as $sliders)
                     <tr>
-                        <td>{{ $sliders->image ?? 'N/A' }}</td>
+                        <td><img src="{{asset($sliders->image)}}" style="width:100px;"></td>
+                        <td>
+                            @if($sliders->status == '0')
+                                <span class="badge badge-danger">Inactive</span>
+                            @else
+                                <span class="badge badge-success">Active</span>
+                            @endif
+                        </td>
                         <td>
                             <form
                                 action="{{ route('admin-cause-category-delete', ['token' => encrypt($sliders->id)]) }}"
                                 method="POST">
-                                <a href="{{ route('admin-cause-category-edit', ['token' => encrypt($sliders->id)]) }}"
+                                <a href="{{ url('admin/dashboard/header-home-slider-edit/'.$sliders->id) }}"
                                     class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 editCustomer">
                                     <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
                                     <span class="svg-icon svg-icon-3">
@@ -70,7 +78,7 @@
                                 </a>
                                 @csrf
                                 @method('DELETE')
-                                <button href="#"
+                                <a href="{{ url('admin/settings/banner-delete/'.$sliders->id) }}"
                                     class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm delete-record">
                                     <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
                                     <span class="svg-icon svg-icon-3">
@@ -88,7 +96,7 @@
                                         </svg>
                                     </span>
                                     <!--end::Svg Icon-->
-                                </button>
+                                </a>
                             </form>
                         </td>
                     </tr>
@@ -106,3 +114,15 @@
 
 </div>
 @endsection
+
+@section('js')
+    <Script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></Script>
+    @if(Session::has('deleted'))
+        <script>
+            Swal.fire(
+                'Banner Deleted'
+            );
+            location.reload();
+        </script>
+        @endif
+@stop

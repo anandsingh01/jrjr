@@ -3,6 +3,10 @@
 @section('css')
     <title>Causes</title>
     <style>
+
+    input[type=checkbox]:focus{
+        outline: none;
+    }
         /* filter  */
         /* .all_filters {
     margin-top: 100px;
@@ -120,8 +124,13 @@
         }
 
         ul.term-list {
-            padding: 15px 0;
+            padding: 0px 0;
         }
+    .filter_box.disease form {
+        padding-bottom: 50px;
+    }
+
+
     </style>
 @stop
 
@@ -147,16 +156,17 @@
                         <form action="{{url('search-by')}}" method="get">
                         <div class="filter_head d-flex justify-content-between">
                             <h4>Categories</h4>
-                            
-
-                            <input type="submit" class="btn btn-success btn-sm pull-right clearfix" name="submit" value="Filter"/>
                         </div>
                         <ul class=" term-list">
 
-                            <li class="container1">All
-                                <input type="checkbox">
+                            <label class="container1">All
+                                <input type="checkbox" name="filter_category[]"
+                                       value="-1"
+                                       class="getcategoryData-1"
+                                       style="display: inline-block; height:20px;width: 48px; opacity:1; left: -14px; top: -4px;"
+                                       data-id="-1">
                                 <span class="checkmark"></span>
-                            </li>
+                            </label>
                             <?php
                             $categories = getAllCategories();
                             ?>
@@ -169,68 +179,73 @@
                                        $checked = $_GET['filter_category'];
                                     }
                                     @endphp
-                                    <li class="container1">{{$category->category}}
+
+                                    <label class="container1">{{$category->category}}
                                         <input type="checkbox" name="filter_category[]"
                                                value="{{$category->category}}"
                                                class="getcategoryData{{$category->id}}"
                                                @if(in_array($category->category , $checked)) checked @endif
                                                style="display: inline-block; height:20px;width: 48px; opacity:1; left: -14px; top: -4px;"
                                                data-id="{{$category->id}}">
-                                              
-                                    </li>
+                                               <span class="checkmark"></span>
+
+                                    </label>
                                 @endforeach
                             @endif
 
+
+
                         </ul>
-                        
+                            <input type="submit" class="btn btn-success btn-sm clearfix" name="submit" value="Filter"/>
+
                         </form>
                     </div>
-                    <div class="filter_box place">
+                    <div class="filter_box disease">
+                        <form action="{{url('search-by-city')}}" method="get">
                         <div class="filter_head d-flex justify-content-between">
                             <h4>City</h4>
                         </div>
-                        <div class="filter_categories place_filter">
+                        <ul class=" term-list2">
+
                             <label class="container1">All
-                                <input type="checkbox">
+                                <input type="checkbox" name="filter_city[]"
+                                       value="-1"
+                                       class="getcategoryData-1"
+                                       style="display: inline-block; height:20px;width: 48px; opacity:1; left: -14px; top: -4px;"
+                                       data-id="-1">
                                 <span class="checkmark"></span>
                             </label>
-                            <label class="container1">Mumbai
-                                <input type="checkbox">
-                                <span class="checkmark"></span>
-                            </label>
-                            <label class="container1">Pune
-                                <input type="checkbox">
-                                <span class="checkmark"></span>
-                            </label>
-                            <label class="container1">Banglore
-                                <input type="checkbox">
-                                <span class="checkmark"></span>
-                            </label>
-                            <label class="container1">Surat
-                                <input type="checkbox">
-                                <span class="checkmark"></span>
-                            </label>
-                            <div class="read_more1">
-                                <!-- All other cities will come inside this div -->
-                                <label class="container1">Mumbai
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="container1">Pune
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="container1">Banglore
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="container1">Surat
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <button class="read_btn1" onclick="read1()">Show More...</button>
-                        </div>
+                            <?php
+                            $cities = getAllCities();
+                            ?>
+                            @if(!empty($cities))
+                                @foreach($cities as $city)
+
+                                    @php
+                                        $checked = [];
+                                        if(isset($_GET['filter_city'])){
+                                           $checked = $_GET['filter_city'];
+                                        }
+                                    @endphp
+
+                                    <label class="container1">{{$city->city}}
+                                        <input type="checkbox" name="filter_city[]"
+                                               value="{{$city->city}}"
+                                               class="getcategoryData{{$city->id}}"
+                                               @if(in_array($city->$city , $checked)) checked @endif
+                                               style="display: inline-block; height:20px;width: 48px; opacity:1; left: -14px; top: -4px;"
+                                               data-id="{{$city->id}}">
+                                        <span class="checkmark"></span>
+
+                                    </label>
+                                @endforeach
+                            @endif
+
+
+                        </ul>
+                            <input type="submit" class="btn btn-success btn-sm clearfix" name="submit" value="Filter"/>
+
+                        </form>
                     </div>
                 </div>
 
@@ -238,7 +253,7 @@
                     <div class="our-cause remove-ext-50 loader-data" id="itemContainer">
 
                         @foreach ($causes as $cause)
-                            <div class="col-sm-4">
+                            <div class="col-sm-4" style="height: 410px">
                                 <div class="caro-unit fadein">
                                     <div class="cause-avatar">
                                         <a href="{{ url('cause-details', $cause->slug) }}">
@@ -302,18 +317,13 @@
             var checkboxvalue =  $('.getcategoryData'+categoryid).attr('data-id');
             alert(checkboxvalue);
         });
-        // $(document).ready(function() {
-        //     // alert('ac');
-        //     //set initial state.
-        //    var checkboxvalue =  $('.getcategoryData').attr('data-id');
-        //    alert(checkboxvalue);
-        // });
+
 
         $('ul.term-list').each(function(){
-            var LiN = $(this).find('li').length;
+            var LiN = $(this).find('label').length;
             if( LiN > 3){
-                $('li', this).eq(2).nextAll().hide().addClass('toggleable');
-                $(this).append('<li class="more container1 ">More...</li>');
+                $('label', this).eq(2).nextAll().hide().addClass('toggleable');
+                $(this).append('<label class="more container1 ">More...</label>');
             }
         });
         $('ul.term-list').on('click','.more', function(){
@@ -322,7 +332,24 @@
             }else{
                 $(this).text('Less...').addClass('less');
             }
-            $(this).siblings('li.toggleable').slideToggle();
+            $(this).siblings('label.toggleable').slideToggle();
+        });
+
+
+        $('ul.term-list2').each(function(){
+            var LiN = $(this).find('label').length;
+            if( LiN > 3){
+                $('label', this).eq(2).nextAll().hide().addClass('toggleable');
+                $(this).append('<label class="more2 container2 ">More...</label>');
+            }
+        });
+        $('ul.term-list2').on('click','.more2', function(){
+            if( $(this).hasClass('less2') ){
+                $(this).text('More...').removeClass('less');
+            }else{
+                $(this).text('Less...').addClass('less');
+            }
+            $(this).siblings('label.toggleable').slideToggle();
         });
     </script>
     <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>

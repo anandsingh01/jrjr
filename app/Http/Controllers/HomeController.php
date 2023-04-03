@@ -15,7 +15,7 @@ class HomeController extends Controller
             $causes = Cause::orderBy('created_at', 'asc')->where('status',1)->take(3)->get();
             $events = Events::orderBy('created_at', 'asc')->take(3)->get();
             $sliders = Slider::where('status','1')->orderBy('created_at', 'asc')->take(3)->get();
-
+//            print_r($sliders);die;
             return view('frontend.index', compact('causes', 'events','sliders'));
         } catch (\Exception $e) {
             \Log::error($e);

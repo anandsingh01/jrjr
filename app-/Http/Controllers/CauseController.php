@@ -38,16 +38,10 @@ class CauseController extends Controller
         if(!Auth::check()){
             return redirect(url('/login'));
         }
+        $categories = CauseCategory::all();
+        $subCategories = CauseSubCategory::all();
+        return view('backend.cause.add', compact('categories', 'subCategories'));
 
-        try {
-            $categories = CauseCategory::all();
-            $subCategories = CauseSubCategory::all();
-            return view('backend.cause.add', compact('categories', 'subCategories'));
-        } catch (Exception $e) {
-            dd($e->getMessage());
-            Log::error($e);
-            return redirect()->back()->with(['error' => 'Somthing is wrong', 'error_msg' => $e->getMessage()]);
-        }
     }
 
     public function store(Request $request)

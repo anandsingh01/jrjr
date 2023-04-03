@@ -22,14 +22,16 @@ class DashboardController extends Controller
             if(Auth::user()->role == '1'){
                 return view('layouts.dashboard');
             }else{
-                $userid = decrypt($id);
+                
+//                 $userid = decrypt($id);
                 if (Auth::check()) {
-                    $data['user_data'] = User::find($userid);
-                    $data['fundraiser'] = Cause::where('status','1')->with('causeImages', 'causeDocuments')->get();
-                    $data['donated_amount'] = Payment::with('getCauses')->where('donar_id',$userid)->get();
-        //            print_r($data['donated_amount']);die;
-                    return view('backend.users.profile',$data);
-//                    return view('frontend.fund_users.dashboard',$data);
+                    return view('layouts.dashboard');
+//                     $data['user_data'] = User::find($userid);
+//                     $data['fundraiser'] = Cause::where('status','1')->with('causeImages', 'causeDocuments')->get();
+//                     $data['donated_amount'] = Payment::with('getCauses')->where('donar_id',$userid)->get();
+//         //            print_r($data['donated_amount']);die;
+//                     return view('backend.users.profile',$data);
+// //                    return view('frontend.fund_users.dashboard',$data);
                 }else{
                     return redirect('login');
                 }
@@ -179,12 +181,13 @@ class DashboardController extends Controller
         $data['cause'] = Cause::with('causeImages','causeDocuments','causePatient','causeCategory','causeSubCategory')
             ->where('id',$id)
             ->first();
+            // print_r($data);die;
         return view('backend.users.details',$data);
     }
 
     function search_by(Request $request){
-
-        $getCategory  = CauseCategory::whereIn('category',$request->filter_category)->get();
+        if(!empty($request->filter_category)){
+                    $getCategory  = CauseCategory::whereIn('category',$request->filter_category)->get();
         $getCategoryId = [];
         foreach ($getCategory as $catIdList){
             array_push($getCategoryId,$catIdList->id);
@@ -194,9 +197,14 @@ class DashboardController extends Controller
 
         $causes = Cause::with('causeImages','causeDocuments','causePatient','causeCategory','causeSubCategory')
             ->where('category_id',$getCategoryId)
+            ->where('status',1)
             ->get();
 
         return view('frontend.cause.causes', compact('causes','causesCategory'));
+        }else{
+            return redirect(url('cause/causes'));
+        }
+
     }
 
 }

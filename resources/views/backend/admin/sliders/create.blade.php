@@ -12,13 +12,34 @@
         <!--begin::Card body-->
         <div class="card-body pt-0">
             <!--begin::Table-->
-            <form class="forms-sample" id="addCategoryForm" method="post"
+            <form class="forms-sample" id="" method="post"
                 action="{{ url('admin/dashboard/header-home-slider-save') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="d-flex flex-column mb-5 fv-row">
                     <label class="control-label mb-2"><span class="text-danger">* </span>Image</label>
                     <input type="file" class="form-control form-control-solid" placeholder="Enter Catgory" id="category"
                         name="image">
+                </div>
+
+
+                <div class="d-flex flex-column mb-5 fv-row">
+                    <label class="control-label mb-2"><span class="text-danger">* </span>Heading 1</label>
+                    <input type="text" class="form-control form-control-solid" placeholder="Enter Header 1"
+                           id=""
+                           name="heading_one">
+                </div>
+
+                <div class="d-flex flex-column mb-5 fv-row">
+                    <label class="control-label mb-2"><span class="text-danger">* </span>Heading 2</label>
+                    <input type="text" class="form-control form-control-solid" placeholder="Enter Header 2"
+                           id=""
+                           name="heading_two">
+                </div>
+                <div class="d-flex flex-column mb-5 fv-row">
+                    <label class="control-label mb-2"><span class="text-danger">* </span>Link</label>
+                    <input type="text" class="form-control form-control-solid" placeholder="Enter Link"
+                           id=""
+                           name="link">
                 </div>
                 {{-- <div class="modal-footer"> --}}
                     <button type="submit" class="btn btn-primary" style="float: right">Add</button>

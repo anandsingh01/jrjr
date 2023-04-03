@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 @section('css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.css"/>
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.css"/>-->
     <script src="https://use.typekit.net/naf7ivh.js"></script>
     <script>try{Typekit.load({ async: true });}catch(e){}</script>
     <style>
@@ -194,7 +194,7 @@
                                                     {{$damounts->order_id}}
                                                 </td>
                                                 <td data-th="Invoice Date">
-                                                    Rs. {{number_format($damounts->amount,2)}}
+                                                    Rs. {{number_format($damounts->amount/100,2)}}
                                                 </td>
                                                 <td data-th="Net Amount">
                                                     <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
@@ -208,11 +208,12 @@
                                                         <!-- Modal content-->
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                <h4 class="modal-title">X</h4>
+                                                                <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                                                                <!--<h4 class="modal-title">X</h4>-->
                                                             </div>
                                                             <div class="modal-body">
-                                                                <p>Some text in the modal.</p>
+                                                                <p>{{$damounts->getCauses[0]->cause_title}}</p>
+                                                                <p>Rs. {{$damounts->amount/100}}</p>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -233,6 +234,11 @@
             </div>
         </div>
     </section><!-- volunteer info section -->
+
+
+
+
+
 
 @endsection
 

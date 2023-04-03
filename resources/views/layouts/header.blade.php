@@ -9,19 +9,19 @@
 @endphp
 
 <head>
-    {{--    <meta name="csrf-token" content="{{ csrf_token() }}" />--}}
+{{--    <meta name="csrf-token" content="{{ csrf_token() }}" />--}}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="multipurpose" />
-    <meta name="keywords" content="multipurpose, lifeaid" />
+    <meta name="description" content="JRJR" />
+    <meta name="keywords" content="JRJR - Charity" />
 
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/jrjr.png') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/jrjr-logos/jrjr_logo_favicon.png') }}">
 
     <link rel="stylesheet" href="{{ asset('dist/css/ionicons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dist/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dist/css/animate.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dist/css/owl.carousel.css') }}">
-    {{--    <link rel="stylesheet" href="{{ asset('dist/css/nice-select.css') }}">--}}
+{{--    <link rel="stylesheet" href="{{ asset('dist/css/nice-select.css') }}">--}}
     <link rel="stylesheet" href="{{ asset('dist/css/nprogress.css') }}">
     <link rel="stylesheet" href="{{ asset('dist/css/ripple.css') }}">
     <link rel="stylesheet" href="{{ asset('dist/css/silk-accordion.css') }}">
@@ -67,34 +67,34 @@
 
 <body>
 <div class="site-layout">
-    <header class="">
-        {{--        <div class="topbar">--}}
-        {{--            <div class="container">--}}
-        {{--                <div class="row">--}}
-        {{--                    <div class="col-sm-12">--}}
-        {{--                        @php--}}
-        {{--                            $headerBanner = \App\Models\HeaderBanner::first();--}}
-        {{--                        @endphp--}}
-        {{--                        @if (!empty($headerBanner))--}}
-        {{--                            <div class="language-select" style="display: flex;justify-content:space-between">--}}
-        {{--                                <span>{{ $headerBanner->header_text ?? "N/A" }}</span>--}}
-        {{--                                <div>--}}
-        {{--                                    <div style="cursor: pointer;" onclick="close()" class="cancle"><i class="fa-solid fa-xmark"></i></div>--}}
-        {{--                                </div>--}}
-        {{--                            </div>--}}
-        {{--                        @endif--}}
-        {{--                    </div>--}}
-        {{--                </div>--}}
-        {{--            </div>--}}
-        {{--        </div>--}}
+    <header class="" style="z-index:9999999999">
+{{--        <div class="topbar">--}}
+{{--            <div class="container">--}}
+{{--                <div class="row">--}}
+{{--                    <div class="col-sm-12">--}}
+{{--                        @php--}}
+{{--                            $headerBanner = \App\Models\HeaderBanner::first();--}}
+{{--                        @endphp--}}
+{{--                        @if (!empty($headerBanner))--}}
+{{--                            <div class="language-select" style="display: flex;justify-content:space-between">--}}
+{{--                                <span>{{ $headerBanner->header_text ?? "N/A" }}</span>--}}
+{{--                                <div>--}}
+{{--                                    <div style="cursor: pointer;" onclick="close()" class="cancle"><i class="fa-solid fa-xmark"></i></div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        @endif--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
         <div class="container">
             <div class="row">
                 <div class="col-sm-2">
                     <div class="logo">
-                        <h1><a href="{{url('/')}}"><img src="{{ asset('assets/images/jrjr.png') }}" style="padding: 10px 0;" alt="" width="80px"></a></h1>
+                        <h1><a href="{{url('/')}}"><img src="{{ asset('assets/images/jrjr-logos/jrjr_logo.png') }}" alt="" width="100px"></a></h1>
                     </div>
                 </div>
-                <div class="col-sm-10">
+                <div class="col-sm-9">
                     <nav>
                         <div class="main-menu">
                             <ul>
@@ -110,7 +110,7 @@
                                 @if (!Auth::check())
                                     <li>
                                         <a href="{{url('/login')}}" data-ripple="" class="ls-l sl-2 layer-button" style="font:bold 11px 'open sans';color:#fff;letter-spacing:1px;padding:18px 18px;text-transform:uppercase;display:inline-block;" data-ls="offsetxin:50;delayin:1500;skewxin:-60;offsetxout:-50;durationout:1000;skewxout:-60;">Login</a>
-                                        {{--                                        <a href="#"  data-toggle="modal" data-target="#loginmodal">Login</a>--}}
+{{--                                        <a href="#"  data-toggle="modal" data-target="#loginmodal">Login</a>--}}
                                     </li>
                                 @else
                                     @if (Auth::user())
@@ -124,46 +124,46 @@
                                                 <li><a href="{{url('/signout')}}" title="" data-ripple="">Logout</a></li>
                                             </ul>
                                         </li>
-                                        {{--                                        <li>--}}
-                                        {{--                                            <a href="" class="modal__trigger" id="userdropdown" data-bs-toggle="dropdown" aria-expanded="false">--}}
-                                        {{--                                            <span class="d-md-inline-block fw-medium">--}}
-                                        {{--                                                @if (isset(Auth::user()->fName))--}}
-                                        {{--                                                    Hello {{ Auth::user()->fName }}--}}
-                                        {{--                                                @endif--}}
-                                        {{--                                            </span>--}}
-                                        {{--                                            </a>--}}
-                                        {{--                                        </li>--}}
+{{--                                        <li>--}}
+{{--                                            <a href="" class="modal__trigger" id="userdropdown" data-bs-toggle="dropdown" aria-expanded="false">--}}
+{{--                                            <span class="d-md-inline-block fw-medium">--}}
+{{--                                                @if (isset(Auth::user()->fName))--}}
+{{--                                                    Hello {{ Auth::user()->fName }}--}}
+{{--                                                @endif--}}
+{{--                                            </span>--}}
+{{--                                            </a>--}}
+{{--                                        </li>--}}
 
-                                        {{--                                        <li>--}}
-                                        {{--                                            <a href="{{url('/signout')}}" class="ls-l sl-2 layer-button" style="font:bold 11px 'open sans';color:#fff;letter-spacing:1px;padding:18px 18px;text-transform:uppercase;display:inline-block;background-color:red" data-ls="offsetxin:50;delayin:1500;skewxin:-60;offsetxout:-50;durationout:1000;skewxout:-60;">--}}
-                                        {{--                                                Signout--}}
-                                        {{--                                            </a>--}}
-                                        {{--                                        </li>--}}
+{{--                                        <li>--}}
+{{--                                            <a href="{{url('/signout')}}" class="ls-l sl-2 layer-button" style="font:bold 11px 'open sans';color:#fff;letter-spacing:1px;padding:18px 18px;text-transform:uppercase;display:inline-block;background-color:red" data-ls="offsetxin:50;delayin:1500;skewxin:-60;offsetxout:-50;durationout:1000;skewxout:-60;">--}}
+{{--                                                Signout--}}
+{{--                                            </a>--}}
+{{--                                        </li>--}}
                                     @endif
                                 @endif
 
-                                {{--                                @if (!(session()->has('fund_user_id')))--}}
-                                {{--                                    <li>--}}
-                                {{--                                        --}}{{--                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">--}}
-                                {{--                                        --}}{{--                                            Launch demo modal--}}
-                                {{--                                        --}}{{--                                        </button>--}}
-                                {{--                                        <a href="#"  data-toggle="modal" data-target="#loginmodal">Login</a>--}}
-                                {{--                                @else--}}
+{{--                                @if (!(session()->has('fund_user_id')))--}}
+{{--                                    <li>--}}
+{{--                                        --}}{{--                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">--}}
+{{--                                        --}}{{--                                            Launch demo modal--}}
+{{--                                        --}}{{--                                        </button>--}}
+{{--                                        <a href="#"  data-toggle="modal" data-target="#loginmodal">Login</a>--}}
+{{--                                @else--}}
 
-                                {{--                                    @if (session()->has('fund_user_id'))--}}
-                                {{--                                        <li><a href="" class="modal__trigger" id="userdropdown" data-bs-toggle="dropdown" aria-expanded="false">--}}
-                                {{--                                            <span class="d-md-inline-block fw-medium">--}}
-                                {{--                                                @if (isset($fundUser->fName))--}}
-                                {{--                                                    Hello {{ $fundUser->fName }}--}}
-                                {{--                                                @endif--}}
-                                {{--                                            </span>--}}
-                                {{--                                            </a>--}}
-                                {{--                                        </li>--}}
-                                {{--                                        <ul class="dropdown-menu dropdown-menu-end" id="drop" aria-labelledby="userdropdown">--}}
-                                {{--                                            <li><a class="dropdown-item" href="{{ route('signout') }}">Sign Out</a></li>--}}
-                                {{--                                        </ul>--}}
-                                {{--                                    @endif--}}
-                                {{--                                @endif--}}
+{{--                                    @if (session()->has('fund_user_id'))--}}
+{{--                                        <li><a href="" class="modal__trigger" id="userdropdown" data-bs-toggle="dropdown" aria-expanded="false">--}}
+{{--                                            <span class="d-md-inline-block fw-medium">--}}
+{{--                                                @if (isset($fundUser->fName))--}}
+{{--                                                    Hello {{ $fundUser->fName }}--}}
+{{--                                                @endif--}}
+{{--                                            </span>--}}
+{{--                                            </a>--}}
+{{--                                        </li>--}}
+{{--                                        <ul class="dropdown-menu dropdown-menu-end" id="drop" aria-labelledby="userdropdown">--}}
+{{--                                            <li><a class="dropdown-item" href="{{ route('signout') }}">Sign Out</a></li>--}}
+{{--                                        </ul>--}}
+{{--                                    @endif--}}
+{{--                                @endif--}}
 
                                 {{--                                     <li><a href="start-fundraiser.php" data-ripple=""--}}
                                 {{--                                            class="ls-l sl-2 layer-button"--}}
@@ -174,6 +174,7 @@
                         </div>
                     </nav>
                 </div>
+                <div class="col-sm-1"></div>
             </div>
         </div>
     </header>
@@ -181,12 +182,13 @@
 
 
     <div class="responsive-header">
-        <div class="res-logo-area">
-            {{--            <div class="col-sm-3 col-xs-4">--}}
-            {{--            </div>--}}
-            <div class="col-sm-8 col-xs-8">
-                <a href="{{url('/')}}" title=""><img src="{{asset('assets/images/jrjr.png')}}" alt="" width="80px"></a>
+        <div class="res-logo-area" style="padding: 8px 0">
+{{--            <div class="col-sm-3 col-xs-4">--}}
+{{--            </div>--}}
+            <div class="col-sm-4 col-xs-4">
+                <a href="{{url('/')}}" title=""><img src="{{ asset('assets/images/jrjr-logos/jrjr_logo.png') }}" alt="" width="80px"></a>
             </div>
+            <div class="col-sm-4 col-xs-4"></div>
             <div class="col-sm-4 col-xs-4">
                 <div id="nav-icon3">
                     <span></span>
@@ -197,38 +199,54 @@
             </div>
         </div>
         <div class="responsive-menu">
-            <a href="#" title=""><img src="{{asset('assets/images/jrjr.png')}}" alt=""></a>
+            <a href="{{url('/')}}" title="" style="margin-top: -25px">
+                <img src="{{asset('assets/images/jrjr.png')}}" alt="">
+                </a>
             <ul>
                 <li class="menu-item"><a href="{{url('/')}}">home</a></li>
 
                 <li><a href="{{ route('about') }}">About</a></li>
                 <li><a href="{{ route('cause-causes') }}">Causes</a></li>
                 <li><a href="{{ route('events-list') }}">Events</a></li>
-                <li class="menu-item-has-children"><a href="#" title="">Hello</a><i class="ion-chevron-down"></i>
-                    <ul class="submenu">
-                        <li><a href="blog-listing-leftbar.html" title="" data-ripple="">blog with L.sidebar</a></li>
-                        <li><a href="blog-listing-rightbar.html" title="" data-ripple="">blog with R.sidebar</a></li>
-                    </ul>
-                </li>
+                <li><a href="{{ route('contact') }}">Contact</a></li>
+                {{-- <li class="menu-item-has-children"><a href="{{url('users/dashboard/'.encrypt(Auth::user()->id))}}" title="">
+                                                Hello @if (isset(Auth::user()->fName))
+                                                    {{ Auth::user()->fName }}
+                                                @endif
+                                            </a>
+                                            <ul style="z-index:9999999">
+                                                <li><a href="{{url('users/dashboard/'.encrypt(Auth::user()->id))}}" title="" data-ripple="">Dashboard</a></li>
+                                                <li><a href="{{url('/signout')}}" title="" data-ripple="">Logout</a></li>
+                                            </ul>
+                                        </li> --}}
+                                        
+                                        <li >
+                                        @if (!Auth::check())
+                                        <a href="{{url('/login')}}" data-ripple="" class="ls-l sl-2 layer-button" style="width: 50%;font:bold 11px 'open sans';color:#fff;letter-spacing:1px;padding:18px 18px;text-transform:uppercase;display:inline-block;" data-ls="offsetxin:50;delayin:1500;skewxin:-60;offsetxout:-50;durationout:1000;skewxout:-60;">Login</a>
+                                        @else
+                                        @if (Auth::user())
+                                        <li class="menu-item-has-children"><a href="{{url('users/dashboard/'.encrypt(Auth::user()->id))}}" title="">
+                                                Hello @if (isset(Auth::user()->fName))
+                                                    {{ Auth::user()->fName }}
+                                                @endif
+                                            </a>
+                                            <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                            <ul class="submenu" style="z-index:9999999">
+                                                <li><a href="{{url('users/dashboard/'.encrypt(Auth::user()->id))}}" title="" data-ripple="">Dashboard</a></li>
+                                                <li><a href="{{url('/signout')}}" title="" data-ripple="">Logout</a></li>
+                                            </ul>
+                                        </li>
+                                        </li>
+                                        @endif
+                                        @endif
 
             </ul>
             <ul class="little-info">
-                <li><i class="ion-ios-telephone"></i><span>+971 8753563</span></li>
-                <li><i class="ion-android-mail"></i><span><a href="http://wpkixx.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="8fc3e6e9eaeee6ebcfe8e2eee6e3a1ece0e2">[email&#160;protected]</a></span>
+                <li><i class="fa fa-phone"></i><span><a href="tel:+919920342080">+91 99203 42080</a></span></li>
+                <li><i class="fa fa-envelope"></i><span><a href="mailto:jrjrindia@gmail.com" class="__cf_email__">jrjrindia@gmail.com</a></span>
                 </li>
             </ul>
         </div>
-        <a href="#" title="" class="res-search"><i class="fa fa-search"></i></a>
-        <form class="search-insite" method="post">
-            <i class="fa fa-times"></i>
-            <input type="text" placeholder="search here">
-            <button type="submit"></button>
-        </form>
-        <ul class="socials">
-            <li><a href="#" title=""><i class="fa fa-facebook"></i></a></li>
-            <li><a href="#" title=""><i class="fa fa-twitter"></i></a></li>
-            <li><a href="#" title=""><i class="fa fa-instagram"></i></a></li>
-        </ul>
     </div>
 
 
@@ -237,12 +255,12 @@
     <div class="modal" id="loginmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                {{--                            <div class="modal-header" style="visibility: hidden;">--}}
-                {{--                                <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>--}}
-                {{--                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-                {{--                                    <span aria-hidden="true">&times;</span>--}}
-                {{--                                </button>--}}
-                {{--                            </div>--}}
+{{--                            <div class="modal-header" style="visibility: hidden;">--}}
+{{--                                <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>--}}
+{{--                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
+{{--                                    <span aria-hidden="true">&times;</span>--}}
+{{--                                </button>--}}
+{{--                            </div>--}}
                 <div class="modal-body">
                     <form class="payment-form1" method="POST" action="{{ url('fund/users-login') }}">
                         @csrf
@@ -309,11 +327,11 @@
                     <div class="col-sm-3">
                         <div class="widget">
                             <div class="logo">
-                                <h1><a href="{{url('/')}}"><img src="assets/images/logo/jrjr-logo.png" width="90px" alt=""></a></h1>
+                                <h1><a href="{{url('/')}}"><img src="{{ asset('assets/images/jrjr-logos/jrjr_logo.png') }}" width="90px" alt=""></a></h1>
                             </div>
                             <ul class="address">
                                 <li><i class="fa fa-phone"></i>+91 8975456545</li>
-                                <li><i class="fa fa-envelope"></i><a href="#" class="__cf_email__" data-cfemail="">email</a></li>
+                                <li><i class="fa fa-envelope"></i><a href="mailto:jrjrindia@gmail.com" class="__cf_email__" >jrjrindia@gmail.com</a></li>
                             </ul>
                         </div>
                     </div>
@@ -332,23 +350,21 @@
                         <div class="widget fadein">
                             <h4 class="widget-title">Important Links</h4>
                             <ul class="address" style="margin-top: 0px;">
-                                <li><a href="{{ url('/') }}">Home</a></li>
-                                <li><a href="{{ route('about') }}">About</a></li>
-                                <li><a href="{{ route('cause-causes') }}">Causes</a></li>
-                                <li><a href="{{ route('events-list') }}">Events</a></li>
+                                <li><a href="#">Terms & Conditions</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="widget">
-                            <h4 class="widget-title">Flickr Feeds</h4>
+                            <h4 class="widget-title">Causes</h4>
                             <ul class="flickr-gallery">
-                                <li><img src="images/resources/filcker-widget-1.jpg" alt=""></li>
-                                <li><img src="images/resources/filcker-widget-2.jpg" alt=""></li>
-                                <li><img src="images/resources/filcker-widget-3.jpg" alt=""></li>
-                                <li><img src="images/resources/filcker-widget-4.jpg" alt=""></li>
-                                <li><img src="images/resources/filcker-widget-5.jpg" alt=""></li>
-                                <li><img src="images/resources/filcker-widget-6.jpg" alt=""></li>
+                                <!--<li><img src="images/resources/filcker-widget-1.jpg" alt=""></li>-->
+                                <!--<li><img src="images/resources/filcker-widget-2.jpg" alt=""></li>-->
+                                <!--<li><img src="images/resources/filcker-widget-3.jpg" alt=""></li>-->
+                                <!--<li><img src="images/resources/filcker-widget-4.jpg" alt=""></li>-->
+                                <!--<li><img src="images/resources/filcker-widget-5.jpg" alt=""></li>-->
+                                <!--<li><img src="images/resources/filcker-widget-6.jpg" alt=""></li>-->
                             </ul>
                         </div>
                     </div>
@@ -360,18 +376,16 @@
 
 
     <div class="gap nogap">
-        <div class="bottombar">
+        <div class="bottombar" style="padding:12px 0">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="copyright">
-                            <span>© 2022, <a style="color: #00A859;" target="_blank" href="#">JRJR India.</a> All
-                                Rights Reserved. Design & Developed By <a style="color: #00A859;" target="_blank" href="https://kotharitech.com/">KothariTech.</a></span>
-                            <ul class="useful-links">
-                                <li><a href="{{ route('events-list') }}" title="">Events</a></li>
-                                <li><a href="{{ route('cause-causes') }}" title="">Our Causes</a></li>
-                                <li><a class="volenter-btn" href="#" title="">be a volunteer</a></li>
-                            </ul>
+                            <p style="color:white">© <script type="text/javascript">
+                         document.write(new Date().getFullYear());
+                     </script>, <a style="color: #00A859;" target="_blank" href="#">JRJR India.</a> All
+                                Rights Reserved. Design & Developed By <a style="color: #00A859;" target="_blank" href="https://kotharitech.com/?JRJR">KothariTech.</a></p>
+                            
                         </div>
                     </div>
                 </div>
@@ -381,21 +395,7 @@
     <!-- bottombar -->
 
 
-    <div class="new-valunteer-form">
-        <a class="valunte-closed" href="#" title="" data-ripple=""><i class="fa fa-times"></i></a>
-        <div class="form-title">
-            <span>Following info is required</span>
-            <h4>New Volunteer</h4>
-        </div>
-        <form method="get">
-            <input type="text" placeholder="full name*" required>
-            <input type="email" placeholder="Email*" required>
-            <input type="text" placeholder="country" required>
-            <input type="text" placeholder="city" required>
-            <textarea name="address" cols="18" rows="4" placeholder="address"></textarea>
-            <button type="submit" data-ripple="">submit</button>
-        </form>
-    </div>
+
     <!-- valunteer form -->
 
 </div>

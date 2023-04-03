@@ -1,4 +1,4 @@
-@extends('layouts.header')
+@extends('layouts.dashboard')
 @section('content')
 <div class="post d-flex flex-column-fluid" id="kt_post">
     <!--begin::Container-->
@@ -27,27 +27,28 @@
                             </div>
                             <div class="col-sm-6 mb-5">
                                 <div class="form-group">
-                                    <label>Event Location</label>
-                                    <input type="text" name="event_location" class="form-control"
-                                        placeholder="Enter event location" value="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6 mb-5">
-                                <div class="form-group">
                                     <label>Event Date</label>
                                     <input type="date" name="event_date" class="form-control"
-                                        placeholder="Enter event name" value="">
+                                           placeholder="Enter event name" value="">
                                 </div>
                             </div>
+
                             <div class="col-sm-6 mb-5">
                                 <div class="form-group">
                                     <label>Event Time</label>
                                     <input type="time" name="event_time" class="form-control"
-                                        placeholder="Enter event location" value="">
+                                           placeholder="Enter event location" value="">
                                 </div>
                             </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Fetured Image</label>
+                                    <input type="file" accept="image/*" name="feature_image" class="form-control"
+                                           placeholder="Enter Feture Image/Video" value="">
+                                </div>
+                            </div>
+
                         </div>
 
                         <div class="row">
@@ -55,28 +56,108 @@
                                 <div class="form-group">
                                     <label>Event Description</label>
                                     <textarea class="form-control" name="event_desc" id="event_desc" cols="30"
-                                        rows="10"></textarea>
+                                              rows="10"></textarea>
                                 </div>
                             </div>
                         </div>
-                        <br>
+
                         <div class="row mt-5" id="dynamic_field1">
-                            <div class="col-sm-6">
+
+
+
+                            <div class="col-sm-6 mb-5">
                                 <div class="form-group">
-                                    <label>Fetured Image</label>
-                                    <input type="file" accept="image/*" name="feature_image" class="form-control"
-                                        placeholder="Enter Feture Image/Video" value="">
+                                    <label>Event Address 1</label>
+                                    <input type="text" name="event_address_1" class="form-control"
+                                           placeholder="Enter event  address 1" value="">
                                 </div>
                             </div>
-                            <div class="col-sm-6">
+
+                            <div class="col-sm-6 mb-5">
                                 <div class="form-group">
-                                    <label>Banner Image</label>
-                                    <input type="file" accept="image/*" name="banner_image" class="form-control"
-                                        placeholder="Enter Feture Image/Video" value="">
+                                    <label>Event Address 2</label>
+                                    <input type="text" name="event_address_2" class="form-control"
+                                           placeholder="Enter event address 2" value="">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4 mb-5">
+                                <div class="form-group">
+                                    <label>Event State</label>
+                                    <input type="text" name="event_state" class="form-control"
+                                           placeholder="Enter event State" value="">
+                                </div>
+
+
+
+{{--                                <select type="text" name="event_address_2" class="form-control">--}}
+{{--                                    <?php--}}
+{{--                                    $getstates = \App\Models\State::get();--}}
+{{--                                    foreach ($getstates as $getstate){--}}
+{{--                                        ?>--}}
+{{--                                    <option>{{$getstate->}}</option>--}}
+{{--                                        <?php--}}
+
+{{--                                    }--}}
+{{--                                    ?>--}}
+{{--                                </select>--}}
+
+
+                            </div>
+
+                            <div class="col-sm-4 mb-5">
+
+                                <div class="form-group">
+                                    <label>Event City</label>
+                                    <select type="text" name="event_city" class="form-control">
+                                        <?php
+                                        $getcity = \App\Models\City::get();
+                                        foreach ($getcity as $getcities){
+                                            ?>
+                                        <option>{{$getcities->city}}</option>
+                                            <?php
+
+                                        }
+                                        ?>
+                                    </select>
+                                    {{--                                    <input type="text" name="event_state" class="form-control"--}}
+                                    {{--                                           placeholder="Enter event State" value="">--}}
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4 mb-5">
+                                <div class="form-group">
+                                    <label>Pincode</label>
+                                    <input type="text" name="event_pincode" class="form-control"
+                                           placeholder="Enter event Pincode" value="">
+                                </div>
+                            </div>
+
+                        </div>
+                        <br>
+
+                        <div class="row">
+
+                            <div class="col-sm-6 mb-5">
+                                <div class="form-group">
+                                    <label>Event End date</label>
+                                    <input type="date" name="event_end_date" class="form-control"
+                                        placeholder="Enter event location" value="">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 mb-5">
+                                <div class="form-group">
+                                    <label>Event End Time</label>
+                                    <input type="time" name="event_end_time" class="form-control"
+                                           placeholder="Enter event location" value="">
                                 </div>
                             </div>
                         </div>
+
+
                         <br>
+
                         <div class="d-flex justify-content-center">
                             <button type="submit" class="btn btn-sm btn-primary"
                                 data-kt-menu-dismiss="true">Save</button>

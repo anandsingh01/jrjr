@@ -27,6 +27,11 @@ function getAllCategories(){
     return $categories;
 }
 
+function getAllCities(){
+    $city = \App\Models\City::get();
+    return $city;
+}
+
 function getTopDonor($causeid){
     $donated_amount = Payment::select('payments.*','users.name as donor_name')
         ->leftJoin('users','payments.donar_id','=','users.id')
@@ -48,5 +53,10 @@ function getRecentDonor($causeid){
         ->get();
 
     return $recentDonor;
+}
+
+function getBloodRequirement(){
+    $bloodCount = \App\Models\Requirement::where('status',1)->count();
+    return $bloodCount;
 }
 

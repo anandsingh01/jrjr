@@ -30,7 +30,7 @@
                 <tbody class="fw-bold text-gray-600">
                     @forelse ($fundusers as $funduser)
                     <tr>
-                        <td>{{ $funduser->full_name ?? 'N/A' }}</td>
+                        <td>{{ $funduser->fName ?? 'N/A' }} {{ $funduser->lName ?? 'N/A' }}</td>
                         <td>{{ $funduser->email ?? 'N/A' }}</td>
                         <td>{{ $funduser->number ?? 'N/A' }}</td>
                         <td>

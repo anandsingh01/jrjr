@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Media;
+use App\Models\Payment;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -90,7 +91,10 @@ class Cause extends Model
 
     public function Campaigner(){
         return $this->hasOne(User::class,'id','added_by');
+    }
 
+    function getdonatedamount(){
+        return $this->hasMany(Payment::class,'cause_id','id');
     }
 
 }

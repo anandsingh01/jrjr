@@ -1,4 +1,8 @@
 @extends('layouts.header')
+@section('css')
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+@stop
 @section('content')
     <section>
         <div class="container">
@@ -25,23 +29,10 @@
                     @endif
                 </div>
             </div>
-            <form action="{!! route('payment') !!}" method="POST">
-                @csrf
-                <script src="https://checkout.razorpay.com/v1/checkout.js"
-                        data-key="{{ env('RAZOR_KEY') }}"
-                        data-amount="{{ $amount * 100}}"
-                        data-currency="INR"
-                        data-buttontext="Pay {{ $amount }} INR"
-                        data-description="{{$fundraiser_id}}"
-                        data-name="{{$name}}"
-                        data-prefill.name="name"
-                        data-prefill.email="{{$email}}"
-                        data-image=""
-                        data-theme.color="#F37254"></script>
-            </form>
+
         </div>
     </section>
-@endsection
+
 @section('js')
     <script>
         $(document).ready(function(){
@@ -49,3 +40,22 @@
         });
     </script>
 @stop
+
+
+<form action="{!! route('payment') !!}" method="POST">
+    @csrf
+    <script src="https://checkout.razorpay.com/v1/checkout.js"
+            data-key="rzp_test_ZB8GMwDqEm40nX"
+            data-amount="{{ $amount * 100}}"
+            data-currency="INR"
+            data-buttontext="Pay {{ $amount }} INR"
+            data-description="{{$fundraiser_id}}"
+            data-name="{{$name}}"
+            data-prefill.name="name"
+            data-prefill.email="{{$email}}"
+            data-image=""
+            data-theme.color="#00a859">
+    </script>
+
+</form>
+@endsection

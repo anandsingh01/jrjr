@@ -3,8 +3,8 @@
     <style>
         @media only screen and (min-width: 767px){
             .verify-infolist1 {
-                width: 50%;
-                background: #eef;
+                width: 35%;
+                /*background: #eef;*/
                 padding: 2em;
                 margin: 0 auto;
             }
@@ -79,6 +79,56 @@
             }
         }
     </style>
+
+
+    <style>
+    .container1 {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 4em 2em;
+  /*position: absolute;*/
+  /*transform: translate(-50%, -50%);*/
+  /*top: 50%;*/
+  /*left: 50%;*/
+  border-radius: 0.8em;
+  box-shadow: 0 45px 60px rgba(30, 22, 1, 0.3);
+}
+.inputfield {
+  width: 100%;
+  /*display: flex;*/
+  /*justify-content: space-around;*/
+}
+.input {
+    margin: 12px 0;
+    padding: 0 15px;
+  height: 50px;
+    width: 100%;
+  border: 2px solid #dad9df;
+  outline: none;
+  font-size: 17px;
+  border-radius: 0.3em;
+  background-color: #ffffff;
+  outline: none;
+  /*Hide number field arrows*/
+  -moz-appearance: textfield;
+}
+
+#submit {
+  background-color: #00a859;
+  border: none;
+  outline: none;
+  font-size: 1.2em;
+  padding: 0.8em 2em;
+  color: #ffffff;
+  border-radius: 0.1em;
+  margin: 1em auto 0 auto;
+  cursor: pointer;
+}
+.input:focus {
+  border: 2px solid #00a859;
+}
+
+</style>
 @stop
 @section('content')
 
@@ -94,60 +144,88 @@
                                 @if (session()->has('messages'))
                                     <p class="alert {{ session('alert-class') }}">{{ session('messages') }}</p>
                                 @endif
-                                <form method="POST" action="{{ route('fund-users-store') }}">
-                                    @csrf
-                                    <div class="row mb-3">
-                                        <label for="phone" class="col-md-4 col-form-label text-md-end">
-                                            {{ __('First name') }}
-                                        </label>
+{{--                                <form method="POST" action="{{ route('fund-users-store') }}">--}}
+{{--                                    @csrf--}}
+{{--                                    <div class="row mb-3">--}}
+{{--                                        <label for="phone" class="col-md-4 col-form-label text-md-end">--}}
+{{--                                            {{ __('First name') }}--}}
+{{--                                        </label>--}}
 
-                                        <div class="col-md-6">
-                                            <input id="phone" type="text" class="form-control" name="fname" required autofocus>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <label for="phone" class="col-md-4 col-form-label text-md-end">
-                                            {{ __('Last name') }}
-                                        </label>
+{{--                                        <div class="col-md-6">--}}
+{{--                                            <input id="phone" type="text" class="form-control" name="fname" required autofocus>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="row mb-3">--}}
+{{--                                        <label for="phone" class="col-md-4 col-form-label text-md-end">--}}
+{{--                                            {{ __('Last name') }}--}}
+{{--                                        </label>--}}
 
-                                        <div class="col-md-6">
-                                            <input id="lname" type="text" class="form-control" name="lname" required autofocus>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <label for="phone" class="col-md-4 col-form-label text-md-end">
-                                            {{ __('Email') }}
-                                        </label>
+{{--                                        <div class="col-md-6">--}}
+{{--                                            <input id="lname" type="text" class="form-control" name="lname" required autofocus>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="row mb-3">--}}
+{{--                                        <label for="phone" class="col-md-4 col-form-label text-md-end">--}}
+{{--                                            {{ __('Email') }}--}}
+{{--                                        </label>--}}
 
-                                        <div class="col-md-6">
-                                            <input id="email" type="text" class="form-control" name="email" required autofocus>
-                                        </div>
-                                    </div>
+{{--                                        <div class="col-md-6">--}}
+{{--                                            <input id="email" type="text" class="form-control" name="email" required autofocus>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
 
-                                    <!-- <div class="row mb-3">
-                                                                                                                                            <div class="col-md-6 offset-md-4">
-                                                                                                                                                <div class="form-check">
-                                                                                                                                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                                                                                                                                                    <label class="form-check-label" for="remember">
-                                                                                                                                                        {{ __('Remember Me') }}
-                                    </label>
+
+{{--                                </form>--}}
+
+
+                                <div class="container1">
+                                  <div class="inputfield">
+                                      <form method="POST" action="{{ route('fund-users-store') }}">
+                                          @csrf
+                                    <input type="text" name="fname" class="input" placeholder="First Name" required />
+                                    <input type="text" name="lname" class="input" placeholder="Last Name" required />
+                                    <input type="email"  name="email" class="input" placeholder="Email Id" required />
+                                          <label>Blood Group</label>
+                                          <select name="blood_group" class="input"  required >
+                                          <option value="A+">A+</option>
+                                          <option value="A-">A-</option>
+                                          <option value="B+">B+</option>
+                                          <option value="B-">B-</option>
+                                          <option value="O+">O+</option>
+                                          <option value="O-">O-</option>
+                                          <option value="AB+">AB+</option>
+                                          <option value="AB-">AB-</option>
+                                      </select>
+                                          <label>DOB</label>
+                                          <input type="date" name="dob" class="input" placeholder="date" required />
+
+                                          <input type="text" name="address_1" class="input" placeholder="Address Line 1" required />
+                                          <input type="text" name="address_2" class="input" placeholder="Address Line 2" required />
+                                          <input type="text" name="city" class="input" placeholder="City" required />
+                                          <input type="text" name="zipcode" class="input" placeholder="City" required />
+                                          <div class="row mb-0">
+                                              <div class="col-md-8 offset-md-5">
+                                                  <button type="submit" id="submit" class="btn btn-primary">
+                                                      {{ __('submit') }}
+                                                  </button>
+                                              </div>
+                                          </div>
+                                      </form>
+                                  </div>
+
                                 </div>
                             </div>
-                        </div> -->
 
-                                    <div class="row mb-0">
-                                        <div class="col-md-8 offset-md-5">
-                                            <button type="submit" class="btn btn-primary">
-                                                {{ __('submit') }}
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
+
+
+
+
+
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section><!-- contact info -->

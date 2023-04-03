@@ -38,10 +38,16 @@ class CauseController extends Controller
         if(!Auth::check()){
             return redirect(url('/login'));
         }
-        $categories = CauseCategory::all();
-        $subCategories = CauseSubCategory::all();
-        return view('backend.cause.add', compact('categories', 'subCategories'));
 
+        try {
+            $categories = CauseCategory::all();
+            $subCategories = CauseSubCategory::all();
+            return view('backend.cause.add', compact('categories', 'subCategories'));
+        } catch (Exception $e) {
+            dd($e->getMessage());
+            Log::error($e);
+            return redirect()->back()->with(['error' => 'Somthing is wrong', 'error_msg' => $e->getMessage()]);
+        }
     }
 
     public function store(Request $request)
@@ -145,10 +151,15 @@ class CauseController extends Controller
     {
         try {
             $cause = Cause::with('causeImages','causeDocuments','causePatient','causeCategory','causeSubCategory','Campaigner')
-                ->where('slug',$url)->first();
-//            print_r($cause);die;
+                ->where('slug',$url)
+                ->where('status',1)
+                ->first();
             $lastestCauses = Cause::latest()->take(3)->orderBy('id', 'asc')->get();
-            return view('frontend.cause.causes_details', compact('cause', 'lastestCauses'));
+            if(!empty($cause)){
+                return view('frontend.cause.causes_details', compact('cause', 'lastestCauses'));
+            }else{
+                return view('errors.404');
+            }
         } catch (Exception $e) {
             Log::error($e);
             return redirect()->back()->with(['error' => 'Somthing is wrong', 'error_msg' => $e->getMessage()]);

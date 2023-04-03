@@ -626,10 +626,10 @@
                                 <!--begin::Info-->
                                 <div class="d-flex flex-column">
                                     <!--begin::Name-->
-                                    <a href="#" class="fs-4 fw-bold text-gray-900 text-hover-primary me-2">{{$cause->causePatient->fname}} {{$cause->causePatient->lname}}</a>
+                                    <p class="fs-4 fw-bold text-gray-900 me-2">{{$cause->causePatient->fname}} {{$cause->causePatient->lname}}</p>
                                     <!--end::Name-->
                                     <!--begin::Email-->
-                                    <a href="#" class="fw-semibold text-gray-600 text-hover-primary">{{$cause->causePatient->mobile_no}}</a>
+                                    <a href="tel:{{$cause->causePatient->mobile_no}}" class="fw-semibold text-gray-600 text-hover-primary">{{$cause->causePatient->mobile_no}}</a>
                                     <!--end::Email-->
                                 </div>
                                 <!--end::Info-->

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminCausesController;
+use App\Http\Controllers\QrCodeController;
 use App\Http\Controllers\RazorpayController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
@@ -17,7 +18,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SubCategoryController;
-
+use App\Http\Controllers\CityController;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/login', [HomeController::class, 'login']);
@@ -127,6 +128,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin-'], function () {
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::post('/changeFundraiserStatus', [AdminCausesController::class, 'changeFundraiserStatus'])->name('changeFundraiserStatus');
     Route::get('/fund-users', [AdminFundUserController::class, 'index'])->name('fund-users');
+    Route::get('/donors-lists', [AdminFundUserController::class, 'donors_list'])->name('donors-list');
 
     Route::group(['prefix' => 'cause-category', 'as' => 'cause-category-'], function () {
         Route::get('/list', [CategoryController::class, 'index'])->name('list');
@@ -136,6 +138,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin-'], function () {
         Route::put('/update/{token}', [CategoryController::class, 'update'])->name('update');
         Route::delete('/delete/{token}', [CategoryController::class, 'delete'])->name('delete');
     });
+
+
 
     Route::group(['prefix' => 'cause-sub-category', 'as' => 'cause-sub-category-'], function () {
         Route::get('/list', [SubCategoryController::class, 'index'])->name('list');
@@ -163,17 +167,37 @@ Route::group(['prefix' => 'admin', 'as' => 'admin-'], function () {
 
     Route::group(['prefix' => 'settings', 'as' => 'settings-'], function () {
         Route::get('/header-banner', [SettingsController::class, 'headerBanner'])->name('header-banner');
+        Route::get('/slider_create', [SettingsController::class, 'slider_create'])->name('slider_create');
         Route::post('/header-banner-create', [SettingsController::class, 'headerBannerSave'])->name('header-banner-create');
+        Route::get('banner-delete/{id}', [SettingsController::class, 'deleteBannner']);
+    });
+
+
+    Route::group(['prefix' => 'city', 'as' => 'city-'], function () {
+        Route::get('/list', [CityController::class, 'index'])->name('list');
+        Route::get('/create', [CityController::class, 'create'])->name('create');
+        Route::post('/add', [CityController::class, 'store'])->name('add');
+        Route::get('/edit/{token}', [CityController::class, 'edit'])->name('edit');
+        Route::put('/update/{token}', [CityController::class, 'update'])->name('update');
+        Route::delete('/delete/{token}', [CityController::class, 'delete'])->name('delete');
     });
 
     // hospitals
     Route::get('/hospitals-add', [FrontendController::class, 'hospitals_add'])->name('hospitals_add');
-    Route::post('/hospitals-save', [HospitalController::class, 'hospitals_save'])->name('hospitals_save');
-    Route::get('/hospitals-edit', [FrontendController::class, 'hospitals_edit'])->name('hospitals_edit');
+    Route::post('/hospitals-save', [FrontendController::class, 'hospitals_save'])->name('hospitals_save');
+    Route::get('/hospitals-edit/{id}', [FrontendController::class, 'hospitals_edit'])->name('hospitals_edit');
     Route::get('/hospitals-manage', [FrontendController::class, 'hospitals_manage'])->name('hospitals_manage');
     Route::get('/hospitals-view', [FrontendController::class, 'hospitals_view'])->name('hospitals_view');
+    Route::post('/update-hospital', [FrontendController::class, 'hospitals_update'])->name('hospitals_update');
 
     Route::get('/states', [SettingsController::class, 'headerBanner'])->name('states');
+    Route::get('/delete-fundraiser-row', [AdminCausesController::class, 'delete_fundraiser_row']);
+
+    Route::get('/blood-requirement-list', [HospitalController::class, 'all_requirement_list']);
+    Route::get('hospital/{hospital_id}/requirement/edit/{id}', [HospitalController::class, 'admin_blood_requirement_edit']);
+    Route::post('hospital/requirement/update', [HospitalController::class, 'admin_blood_requirement_update']);
+    Route::get('/hospitals-details-view/{id}', [HospitalController::class, 'hospitals_details']);
+
 
 });
 
@@ -187,6 +211,8 @@ Route::get('deleteFromGallery', [DashboardController::class, 'deleteFromGallery'
 Route::get('admin/dashboard/headerhomeSlider',[SettingsController::class,'sliders']);
 Route::get('admin/dashboard/header-home-slider-Create',[SettingsController::class,'slider_create']);
 Route::post('admin/dashboard/header-home-slider-save',[SettingsController::class,'slider_save']);
+Route::get('admin/dashboard/header-home-slider-edit/{id}',[SettingsController::class,'slider_edit']);
+Route::post('admin/dashboard/header-home-slider-update',[SettingsController::class,'slider_update']);
 
 Route::group(['prefix' => 'users/', 'as' => 'users-'], function () {
     Route::get('dashboard/{url}', [DashboardController::class, 'dashboard']);
@@ -196,7 +222,27 @@ Route::group(['prefix' => 'users/', 'as' => 'users-'], function () {
     Route::get('/view-all-donors/{id}', [DashboardController::class, 'viewalldonars']);
     Route::get('/donated/{id}', [DashboardController::class, 'getDonatedList']);
     Route::get('/view-fundraiser/{id}', [DashboardController::class, 'view_fundraiser']);
+    Route::get('/profile/{id}', [DashboardController::class, 'profile']);
 
 });
 
+
+
+Route::group(['prefix' => 'hospital/', 'as' => 'hospital-'], function () {
+    Route::get('login', [HospitalController::class, 'login']);
+    Route::post('login-verify', [HospitalController::class, 'loginVerify']);
+    Route::get('/', [HospitalController::class, 'index']);
+    Route::get('dashboard/{url}', [HospitalController::class, 'dashboard']);
+    Route::get('{id}/requirement/list', [HospitalController::class, 'requirement_list']);
+    Route::get('{id}/requirement/create', [HospitalController::class, 'requirement_create']);
+    Route::post('/requirement/save', [HospitalController::class, 'requirement_save']);
+    Route::get('{hospital_id}/requirement/edit/{id}', [HospitalController::class, 'requirement_edit']);
+    Route::get('{hospital_id}/requirement/view/{id}', [HospitalController::class, 'requirement_view']);
+    Route::post('/requirement/update', [HospitalController::class, 'requirement_update']);
+    Route::get('{hospital_id}/requirement/delete/{id}', [HospitalController::class, 'requirement_delete']);
+
+
+});
 Route::get('search-by',[DashboardController::class,'search_by']);
+Route::get('search-by-city',[DashboardController::class,'search_by_city']);
+Route::get('/qrcode', [QrCodeController::class, 'index']);

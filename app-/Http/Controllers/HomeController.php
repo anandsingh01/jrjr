@@ -12,7 +12,7 @@ class HomeController extends Controller
     public function home(Request $request)
     {
         try {
-            $causes = Cause::orderBy('created_at', 'asc')->take(3)->get();
+            $causes = Cause::orderBy('created_at', 'asc')->where('status',1)->take(3)->get();
             $events = Events::orderBy('created_at', 'asc')->take(3)->get();
             $sliders = Slider::where('status','1')->orderBy('created_at', 'asc')->take(3)->get();
 

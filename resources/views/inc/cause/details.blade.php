@@ -85,6 +85,27 @@
         </select>
     </div>
 </div>
+
+<!-- Begin Total Giving In Year 1 Field -->
+<div class="form-item webform-component webform-component-textfield"
+     id="webform-component-cultivation--amount-3 hs_total_giving_in_year_1 field hs-form-field">
+    <div class="form-group">
+
+        <label>City</label>
+        <select name="city" data-control=" select2" class="form-select nice-select form-select-solid form-select-lg">
+            <?php
+                $getAllCities = getAllCities();
+                foreach($getAllCities as $cities){
+                    ?>
+            <option value="{{$cities->city}}">{{$cities->city}}</option>
+
+            <?php
+
+                }
+            ?>
+        </select>
+    </div>
+</div>
 <!-- Begin Average Gift Size Percent Change Field 2 -->
 <!-- THIS FIELD IS NOT EDITABLE | GRAYED OUT -->
 <div class="form-item webform-component webform-component-textfield webform-container-inline hs_total_giving_percent_change field hs-form-field" id="webform-component-cultivation--percent-change2">

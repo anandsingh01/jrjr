@@ -31,16 +31,11 @@ class AdminEventsController extends Controller
     public function store(Request $request)
     {
         try {
-            if ($request->hasFile('feature_image') && $request->hasFile('banner_image')) {
+            if ($request->hasFile('feature_image')) {
 
                 $featureImage = $request->file('feature_image');
                 $destinationPath = public_path('events/feature_images');
                 $featureImage->move($destinationPath, $featureImage->getClientOriginalName());
-
-                $bannerImage = $request->file('banner_image');
-                $destinationPath = public_path('events/banner_images');
-                $bannerImage->move($destinationPath, $bannerImage->getClientOriginalName());
-
 
                 $event = Events::create([
                     'name' => $request->event_name ?? null,
@@ -49,7 +44,6 @@ class AdminEventsController extends Controller
                     'event_time' => $request->event_time ?? null,
                     'desc' => $request->event_desc ?? null,
                     'feature_img' => $featureImage->getClientOriginalName(),
-                    'banner_img' => $bannerImage->getClientOriginalName(),
                 ]);
             }
             return redirect()->route('admin-events-list')->with(['success' => 'Category created successfully']);

@@ -6,6 +6,14 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 
     <style>
+
+    @media(max-width: 800px){
+        .detail-meta>h1 {
+font-size: 20px;
+    }}
+    .holder2{
+        margin-top: 0px !important;
+    }
         .d-none{
             display:none;
         }
@@ -18,6 +26,194 @@
             position: absolute;
             top: 50%;
         }
+
+
+        /*.iconic-tab li a{*/
+        /*    color: #fff;*/
+        /*    display: block;*/
+        /*    font-size: 12px;*/
+        /*    font-weight: bold;*/
+        /*    letter-spacing: 0.6px;*/
+        /*    padding: 13px 20px;*/
+        /*    text-transform: capitalize;*/
+        /*}*/
+
+        .iconic-tab.documents_tabs_style .tab-btn li a{
+            padding: 10px 0;
+            color: black;
+            font-size: 17px;
+            /*border-radius: 13px;*/
+
+        }
+        .iconic-tab.documents_tabs_style .tab-btn li.active a{
+            color: white;
+        }
+        .iconic-tab .tab-btn li {
+  margin-right: 2px;
+  text-align: center;
+  width: 140px;
+}
+
+.supporters_tabs{
+    margin-top: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.supporters_tabs li{
+    width: auto !important;
+}
+
+.supporters_tabs li a{
+    font-size: 15px !important;
+    padding: 10px 8px !important;
+    color: black !important;
+}
+.supporters_tabs li.active a{
+
+    color: white !important;
+}
+    </style>
+
+    <style>
+        .modalDialog {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 999999999999;
+    opacity:0;
+    -webkit-transition: opacity 100ms ease-in;
+    -moz-transition: opacity 100ms ease-in;
+    transition: opacity 100ms ease-in;
+    pointer-events: none;
+}
+.modalDialog:target {
+    opacity:1;
+    pointer-events: auto;
+}
+.modalDialog > div {
+    max-width: 800px;
+    width: 90%;
+    position: relative;
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 3px;
+    background: #fff;
+}
+.close {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #00a859;
+    color: #fff;
+    line-height: 25px;
+    position: absolute;
+    right: -12px;
+    text-align: center;
+    top: -10px;
+    width: 34px;
+    height: 34px;
+    text-decoration: none;
+    font-weight: bold;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    -moz-box-shadow: 1px 1px 3px #000;
+    -webkit-box-shadow: 1px 1px 3px #000;
+    box-shadow: 1px 1px 3px #000;
+    padding-top: 5px;
+    opacity: 1 !important;
+}
+.close:hover {
+    background: #179d5e;
+    color: white;
+}
+
+
+
+.wizard-btn{
+    float: none !important;
+    width: auto !important;
+    padding: 0 13px !important;
+}
+
+
+
+
+/* toggle btn*/
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #00a859;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #00a859;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.camp_detail_main p{
+    font-size: 15px;
+    font-weight: 500;
+    margin: 7px 0;
+    color: black;
+}
+.camp_detail_bold{
+    font-size: 15px;
+    font-weight: 500;
+    color: #00a859;
+}
     </style>
 @stop
 @section('content')
@@ -94,50 +290,45 @@
                                     </div>
                                 </div>
 
-                                <div class="container1 mt-5">
-                                    <div class="row">
-                                        <div class="" style="width:100%">
-                                            <!-- Nav tabs -->
-                                            <div class="card">
-                                                <div class="card-header">
-                                                    <ul class="nav nav-tabs justify-content-center" role="tablist">
-                                                        <li class="nav-item">
-                                                            <a class="nav-link" data-toggle="tab" href="#home" role="tab">
-                                                                <i class="now-ui-icons objects_umbrella-13"></i> Overview
-                                                            </a>
-                                                        </li>
-                                                        <li class="nav-item">
-                                                            <a class="nav-link" data-toggle="tab" href="#profile" role="tab">
-                                                                <i class="now-ui-icons shopping_cart-simple"></i> Documents
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="card-body">
-                                                    <!-- Tab panes -->
-                                                    <div class="tab-content">
-                                                        <div class="tab-pane active" id="home" role="tabpanel">
-                                                            <?php
-                                                            echo $cause->cause_description;
-                                                            ?>
-                                                        </div>
-                                                        <div class="tab-pane" id="profile" role="tabpanel">
-                                                            <div class="row">
-                                                                @if(!empty($cause->causeDocuments))
-                                                                    @foreach($cause->causeDocuments as $causeDocuments)
-                                                                        <div class="column">
-                                                                            <img src="{{asset($causeDocuments->file)}}" alt="Nature">
-                                                                        </div>
-                                                                    @endforeach
-                                                                @endif
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+
+
+                                <!--   tab from theme-->
+                                <div class="iconic-tab fadein animated fadeIn documents_tabs_style">
+                                    <ul class="nav nav-tabs tab-btn">
+                                        <li class="active">
+                                            <a href="#overview" data-toggle="tab" aria-expanded="false">Overview</a>
+                                        </li>
+                                        <li class="">
+                                            <a href="#documents" data-toggle="tab" aria-expanded="true">Documents</a>
+                                        </li>
+                                    </ul>
+                                    <!-- Tab panes -->
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade active in" id="overview">
+                                            <div class="column">
+                                                <p>
+                                                    <?php
+                                                        echo $cause->cause_description;
+                                                    ?>
+                                                </p>
+                                                <p>Progressively maintain vertical results after focused mindshare rather Dynamically exploit web-enabled synergy...</p>
                                             </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="documents">
+                                            @if(!empty($cause->causeDocuments))
+                                                @foreach($cause->causeDocuments as $causeDocuments)
+                                                    <div class="column" style="padding: 20px">
+                                                        <a href="{{asset($causeDocuments->file)}}" target="__blank" data-showsocial="false" class="html5lightbox" data-group="set2" title="">
+                                                            <img src="{{asset($causeDocuments->file)}}" alt="Documents">
+                                                            </a>
+
+                                                    </div>
+                                                @endforeach
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
+                                <!--   tab from theme-->
 
 
                             </div>
@@ -154,19 +345,19 @@
                                         $sumOfAmount = sumOfReceivedAmount($cause->id);
                                         $getTotalUser = getTotalUser($cause->id);
                                         ?>
-                                        <span>₹ {{$getReceivedAmount}}
-                                            {{--                                            <i>Raised From ₹{{$sumOfAmount}}</i>--}}
-                                       </span></h2>
+                                        <span>₹ {{$getReceivedAmount}}</span></h2>
                                     <p>raised of <b>₹{{$cause->amount}}</b> target by {{$getTotalUser}} supporters</p>
                                     <!--begin::Primary button-->
                                     @if(Auth::check())
-                                        <button type="button" class="button-small" data-toggle="modal" data-backdrop="false" data-target="#kt_modal_bidding_form">
-                                            Contribute
-                                        </button>
+                                        <!--<button type="button" class="button-small" data-toggle="modal" data-backdrop="false" data-target="#openModal-about">-->
+                                        <!--    Contribute-->
+                                        <!--</button>-->
+                                        <a type="button" class="button-small" href="#openModal-about">Contribute</a>
                                     @else
                                         <a href="{{url('login')}}" class="button-small er contrin">
                                             Contribute
                                         </a>
+
                                     @endif
 
 
@@ -185,12 +376,12 @@
                                     <h4 class="widget-title">Campaigner</h4>
                                     <ul class="latest posts">
                                         <li>
-                                            <div class="latest-meta">
-                                                <h4 class="">Campaigner :  <?php
+                                            <div class="latest-meta1 camp_detail_main">
+                                                <p class=""><span class="camp_detail_bold">Campaigner :</span>  <?php
                                                                                print_r($cause->Campaigner->name);
-                                                                               ?></h4>
-                                                <h2><a href="#" title="">Fundraise Date : {{$cause->created_at}}</a></h2>
-                                                <h2><a href="#" title="">Needed Till : {{$cause->date_by_when_you_need}}</a></h2>
+                                                                               ?></p>
+                                                <p><span class="camp_detail_bold">Fundraise Date :</span> {{$cause->created_at}}</p>
+                                                <p><span class="camp_detail_bold">Needed Till :</span> {{$cause->date_by_when_you_need}}</p>
                                             </div>
                                         </li>
                                     </ul>
@@ -202,25 +393,20 @@
                                 <!-- RH: this is bootstrap 5 tabbed panel -->
 
 
-                                <div class="card">
-                                    <div class="card-header">
-                                        <ul class="nav nav-tabs justify-content-center" role="tablist">
-                                            <li class="nav-item active">
-                                                <a class="nav-link" data-toggle="tab" href="#most_generous" role="tab">
-                                                    <i class="now-ui-icons objects_umbrella-13"></i> Most generous
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="#recent-donors" role="tab">
-                                                    <i class="now-ui-icons shopping_cart-simple"></i> Recent Donors
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="card-body">
-                                        <!-- Tab panes -->
-                                        <div class="tab-content">
-                                            <div class="tab-pane" id="most_generous" role="tabpanel">
+
+                                <div class="iconic-tab fadein animated fadeIn">
+                                    <ul class="nav nav-tabs tab-btn supporters_tabs">
+                                        <li class="active">
+                                            <a href="#most_generous" data-toggle="tab" aria-expanded="true">Most generous</a>
+                                        </li>
+                                        <li class="">
+                                            <a href="#recent-donors" data-toggle="tab" aria-expanded="false">Recent Donors</a>
+                                        </li>
+                                    </ul>
+                                    <!-- Tab panes -->
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade active in" id="most_generous">
+                                            <div class="column">
                                                 <table class="table table-striped table-class" id= "table-id">
 
                                                     <thead>
@@ -251,7 +437,7 @@
 
                                                 </table>
                                                 <!--Start Pagination -->
-                                                <div class='pagination-container' >
+                                                {{-- <div class='pagination-container' >
                                                     <nav>
                                                         <ul class="pagination">
 
@@ -264,11 +450,17 @@
                                                             </li>
                                                         </ul>
                                                     </nav>
+                                                </div> --}}
+
+                                                <div class="holder2 pagination">
+                                                    <a class="jp-current">1</a>
+                                                    <a class="">2</a>
                                                 </div>
                                             </div>
-                                            <div class="tab-pane" id="recent-donors" role="tabpanel">
-
-                                                <table class="table table-striped table-class" id="table-id2">
+                                        </div>
+                                        <div class="tab-pane fade" id="recent-donors">
+                                                    <div class="column">
+                                                        <table class="table table-striped table-class" id="table-id2">
 
                                                     <thead>
                                                     <tr>
@@ -299,7 +491,7 @@
                                                 </table>
                                                 <!--Start Pagination -->
 
-                                                <div class='pagination-container' >
+                                                {{-- <div class='pagination-container' >
                                                     <nav>
                                                         <ul class="pagination">
 
@@ -312,6 +504,10 @@
                                                             </li>
                                                         </ul>
                                                     </nav>
+                                                </div> --}}
+                                                <div class="holder2 pagination">
+                                                    <a class="jp-current">1</a>
+                                                    <a class="">2</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -498,6 +694,173 @@
             </div>
         </div>
     </div>
+
+
+     <div id="openModal-about" class="modalDialog">
+      <div>
+         <a href="#close" title="Close" class="close">X</a>
+         <form action="{{route('razorpay')}}" method="post" class="form fv-plugins-bootstrap5 fv-plugins-framework" >
+                        <!--begin::Heading-->
+                        @csrf
+                        <div class="mb-13 text-center">
+
+                            <!--begin::Description-->
+                            <div class="text-muted fw-semibold fs-5">
+                                Most Donors donate approx given amount <a href="#" class="fw-bold link-primary"> to this fundraiser</a>.
+                            </div>
+                            <!--end::Description-->
+                        </div>
+                        <!--end::Heading-->
+
+                        <!--begin::Input group-->
+                        <div class="row mb-8 fv-row fv-plugins-icon-container">
+                            <div class="col-md-12">
+                                <!--begin::Label-->
+                                <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                                    <span class="required">Choose a Donation Amount</span>
+                                    <i class="fa fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" aria-label="Specify the bid amount to place in." data-bs-original-title="Specify the bid amount to place in." data-kt-initialized="1"></i>
+                                </label>
+                                <!--end::Label-->
+                                <!--begin::Bid options-->
+                                {{-- <div class="d-flex flex-stack gap-5 mb-3">
+                                    <button type="button" class="btn btn-light-primary w-100 preamount" data-price="1000" data-kt-modal-bidding="option">1000</button>
+                                    <button type="button" class="btn btn-light-primary w-100 preamount" data-price="2500" data-kt-modal-bidding="option">2500</button>
+                                    <button type="button" class="btn btn-light-primary w-100 preamount" data-price="5000" data-kt-modal-bidding="option">5000</button>
+                                </div> --}}
+                                <ul class="pay-carrier tab tab-btn">
+                                                                <li class="">
+                                                                    <a href="" class="preamount" data-price="1000" data-kt-modal-bidding="option" data-toggle="tab" title="" data-ripple="" aria-expanded="true">1000<span class="ripple"><span class="ink"></span></span></a>
+                                                                </li>
+                                                                <li class="">
+                                                                    <a href="" class="preamount" data-price="2500" data-kt-modal-bidding="option" data-toggle="tab" title="" data-ripple="" aria-expanded="true">2500<span class="ripple"><span class="ink"></span></span></a>
+                                                                </li>
+                                                                <li class="">
+                                                                    <a href="" class="preamount" data-price="5000" data-kt-modal-bidding="option" data-toggle="tab" title="" data-ripple="" aria-expanded="true">5000<span class="ripple"><span class="ink"></span></span></a>
+                                                                </li>
+                                                            </ul>
+                                <!--begin::Bid options-->
+                                <input type="number" class="form-control form-control-solid bidamount" placeholder="Enter Other Amount" name="amount">
+                                <div class="fv-plugins-message-container invalid-feedback"></div>
+
+                            </div>
+
+                        </div>
+                        <!--end::Input group-->
+
+                        {{--                        <!--begin::Input group-->--}}
+                        {{--                        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">--}}
+                        {{--                            <!--begin::Label-->--}}
+                        {{--                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">--}}
+                        {{--                                <span class="required">Name</span>--}}
+                        {{--                                <i class="fa fa-exclamation-circle ms-2 fs-7"></i>--}}
+                        {{--                            </label>--}}
+                        {{--                            <!--end::Label-->--}}
+                        {{--                            <input type="text" class="form-control form-control-solid" placeholder="Enter name"--}}
+                        {{--                                   value="{{Auth::user()->name ?? ''}}" name="name">--}}
+                        {{--                            <div class="fv-plugins-message-container invalid-feedback"></div>--}}
+
+                        {{--                        </div>--}}
+                        {{--                        <!--end::Input group-->--}}
+
+                        <!--begin::Input group-->
+                        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                            <!--begin::Label-->
+                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                                <span class="required">Email</span>
+                                <i class="fa fa-exclamation-circle ms-2 fs-7"></i>
+                            </label>
+                            <!--end::Label-->
+                            <input type="email" class="form-control form-control-solid" placeholder="Enter email"
+                                   value="{{Auth::user()->email ?? ''}}"
+                                   name="email">
+
+                            <div class="fv-plugins-message-container invalid-feedback"></div>
+
+                        </div>
+                        <!--end::Input group-->
+
+                        <!--begin::Input group-->
+                        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                            <!--begin::Label-->
+                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                                <span class="required">Your Mobile Number</span>
+                                <i class="fa fa-exclamation-circle ms-2 fs-7"></i>
+                            </label>
+                            <!--end::Label-->
+                            <input type="number" class="form-control form-control-solid" placeholder="Enter number"
+                                   value="{{Auth::user()->number ?? ''}}"
+                                   name="number">
+                            <div class="fv-plugins-message-container invalid-feedback"></div>
+
+                        </div>
+                        <!--end::Input group-->
+
+
+                        {{--                        <!--begin::Input group-->--}}
+                        {{--                        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">--}}
+                        {{--                            <!--begin::Label-->--}}
+                        {{--                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">--}}
+                        {{--                                <span class="required">Address</span>--}}
+                        {{--                                <i class="fa fa-exclamation-circle ms-2 fs-7"></i>--}}
+                        {{--                            </label>--}}
+                        {{--                            <!--end::Label-->--}}
+                        {{--                            <input type="text" class="form-control form-control-solid" placeholder="Enter address" name="address">--}}
+                        {{--                            <div class="fv-plugins-message-container invalid-feedback"></div>--}}
+
+                        {{--                        </div>--}}
+                        {{--                        <!--end::Input group-->--}}
+
+                        <!--begin::Input group-->
+                        <div class="d-flex flex-column mb-8 fv-row fv-plugins-icon-container">
+                            <!--begin::Label-->
+                            <label class="d-flex align-items-center fs-6 fw-semibold mb-2">
+                                <span class="">Anonymous</span>
+                            </label>
+                            <!--end::Label-->
+                            <!--<select name="show_anonymous">-->
+                            <!--    <option value="0">No</option>-->
+                            <!--    <option value="1">Yes</option>-->
+                            <!--</select>-->
+                            <label class="switch">
+  <input type="checkbox">
+  <span class="slider round"></span>
+</label>
+                            {{--                        <input type="checkbox" class="form-control form-control-solid" name="show_anonymous">--}}
+                            <div class="fv-plugins-message-container invalid-feedback"></div>
+
+                        </div>
+                        <!--end::Input group-->
+
+                        <input type="hidden" name="fundraiser_title" value="{{$cause->cause_title}}"/>
+                        <input type="hidden" name="fundraiser_id" value="{{$cause->id}}"/>
+
+                        <!--begin::Actions-->
+                        <div class="text-center">
+                            <!--<button type="reset"  class="btn btn-light me-3" data-kt-modal-action-type="cancel">-->
+                            <!--    Cancel-->
+                            <!--</button>-->
+
+                            <button type="submit" class="wizard-btn" id="rzp-button1" data-kt-modal-action-type="submit">
+                                <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+                                <span class="indicator-label">
+                                Submit <span class="payingprice"></span>
+                            </span>
+                              <span class="indicator-progress d-none">Please wait... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                            </span>
+                            </button>
+{{--                            <script src="https://checkout.razorpay.com/v1/checkout.js"></script>--}}
+{{--                            <button type="submit" id="rzp-button1" data-kt-modal-action-type="submit" class="wizard-btn" data-ripple="">Submit <span class="payingprice"></span></button>--}}
+                        </div>
+                        <!--end::Actions-->
+                    </form>
+       </div>
+   </div>
+
+
+
+
+
+
 
 @endsection
 @section('js')

@@ -8,8 +8,16 @@
                 <span class="card-label fw-bolder text-dark">Events</span>
                 {{-- <a href="{{ route('admin-cause-sub-category-create') }}" class="btn btn-primary">Add
                     SubCategory</a> --}}
-                <a href="{{ route('admin-events-create') }}" class="btn btn-primary">Add Event</a>
+
             </h3>
+
+            <!--begin::Actions-->
+            <div class="d-flex align-items-center gap-2 gap-lg-3">
+                <!--begin::Primary button-->
+                <a href="{{ route('admin-events-create') }}" class="btn btn-primary">Add Event</a>
+                <!--end::Primary button-->
+            </div>
+            <!--end::Actions-->
         </div>
         <!--end::Card header-->
         <!--begin::Card body-->
